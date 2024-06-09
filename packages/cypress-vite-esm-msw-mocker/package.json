@@ -1,0 +1,30 @@
+{
+  "name": "cypress-vite-esm-msw-mocker",
+  "type": "module",
+  "version": "0.0.1",
+  "description": "Mock ESM modules in Cypress Vite-based component tests using MSW",
+  "scripts": {
+    "build": "node ./scripts/build.mjs && tsc -p tsconfig.json --declaration --emitDeclarationOnly",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Zachary Williams",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.14.2",
+    "cypress": "^13.11.0",
+    "esbuild": "^0.21.4",
+    "typescript": "^5.2.2",
+    "vite": "^5.2.0"
+  },
+  "exports": {
+    ".": "./dist/src/index.js",
+    "./node": "./dist/src/node.js"
+  },
+  "dependencies": {
+    "msw": "^2.3.1"
+  },
+  "files": [
+    "dist"
+  ]
+}
