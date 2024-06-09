@@ -12,21 +12,39 @@ This package enables the interception and mocking of ESM modules in Cypress Vite
 
 ### Setup
 
-Register MSW in your Cypress component testing support file and handle MSW cleanup:
+- Modify your `cypress.config` file to allow the service worker to intercept requests:
 
-```javascript
-// .../cypress/support/component.ts
+  ```javascript
+  import { defineConfig } from "cypress";
+  import viteConfig from "./vite.config";
+  import { viteConfigWorkerAllowed } from "cypress-vite-esm-msw-mocker/node";
 
-import { registerMswMocker } from "cypress-vite-esm-msw-mocker";
+  export default defineConfig({
+    component: {
+      devServer: {
+        framework: "vue",
+        bundler: "vite",
+        viteConfig: viteConfigWorkerAllowed(viteConfig),
+      },
+    },
+  });
+  ```
 
-before(() => {
-  cy.wrap(registerMswMocker());
-});
+- Register MSW in your Cypress component testing support file and handle MSW cleanup:
 
-after(() => {
-  window.mswWorker.resetHandlers();
-});
-```
+  ```javascript
+  // .../cypress/support/component.ts
+
+  import { registerMswMocker } from "cypress-vite-esm-msw-mocker";
+
+  before(() => {
+    cy.wrap(registerMswMocker());
+  });
+
+  after(() => {
+    window.mswWorker.resetHandlers();
+  });
+  ```
 
 ### API
 

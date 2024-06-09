@@ -1,7 +1,7 @@
 {
   "name": "cypress-vite-esm-msw-mocker",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Mock ESM modules in Cypress Vite-based component tests using MSW",
   "scripts": {
     "build": "node ./scripts/build.mjs && tsc -p tsconfig.json --declaration --emitDeclarationOnly",
